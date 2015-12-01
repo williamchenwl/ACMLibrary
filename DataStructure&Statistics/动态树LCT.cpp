@@ -1,7 +1,3 @@
-/*
-   fist edited by williamchen 2015/11/24
-   */
-   
 typedef struct link_cut_tree{ 
 
 	int son[N][2],sum[N],f[N],key[N],tag[N];
