@@ -1,0 +1,3 @@
+int cross(P a,P b){ 
+	return a.x * b.y - b.x *a.y;
+}

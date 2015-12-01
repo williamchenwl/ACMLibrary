@@ -21,7 +21,7 @@ typedef struct segment_tree{
 		return flag[x] = 0;
 	}
 
-	int update(int x){ 
+	int update(in   ){ 
 		if (tl[x] == tr[x]) return 0;
 		int mid = (l + r) >> 1;
 		up(x); up(sl[x]); up(sr[x]);
