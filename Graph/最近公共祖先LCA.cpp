@@ -1,3 +1,4 @@
+//最近公共祖先LCA.cpp
 int dfs(int u){
      vis[u]=1;  
      for (int i=base[u];i;i=next[i])

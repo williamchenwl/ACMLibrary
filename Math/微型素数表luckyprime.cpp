@@ -1,3 +1,5 @@
+
+//微型素数表
 typedef long long ll;
 
 ll lucky[25] = { 

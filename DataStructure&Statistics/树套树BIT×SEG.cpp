@@ -1,3 +1,4 @@
+//树套树
 int build(int a,int b){ 
 	int x = ++tot;
 	if (a == b) {root[a] = 1; return;}

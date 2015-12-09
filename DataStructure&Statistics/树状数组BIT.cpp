@@ -1,3 +1,4 @@
+//树状数组
 typedef struct Fenwick_Tree{  
 	
 	ll C[N];

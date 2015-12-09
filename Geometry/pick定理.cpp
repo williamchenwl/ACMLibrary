@@ -1,3 +1,4 @@
+//pick定理
 #include <iostream>
 #include <cstring>
 #include <cmath>

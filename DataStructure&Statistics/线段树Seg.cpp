@@ -1,3 +1,4 @@
+//线段树
 typedef struct segment_tree{ 
 	int siz,tot;
 	int sl[N],sr[N];

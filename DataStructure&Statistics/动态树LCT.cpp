@@ -1,3 +1,4 @@
+//动态树
 typedef struct link_cut_tree{ 
 
 	int son[N][2],sum[N],f[N],key[N],tag[N];
