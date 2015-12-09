@@ -1,3 +1,4 @@
+//回文字串Manacher
 void manacher(){ 
 	int m = 2 * n + 1;
 	for (int i = 1;i <= n;i++){ 

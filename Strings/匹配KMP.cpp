@@ -1,3 +1,5 @@
+
+//KMP
 typedef struct PString{
     char s[N];
 

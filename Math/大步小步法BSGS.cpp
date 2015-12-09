@@ -1,3 +1,5 @@
+
+
 //大步小步法 用于求(Y^X = Z) mod P
 #define ll long long
 using namespace std;

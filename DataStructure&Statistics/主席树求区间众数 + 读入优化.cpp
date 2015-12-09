@@ -1,3 +1,4 @@
+//主席树求区间众数+读入优化
 #include<cstdio>
 #include<iostream>
 using namespace std;

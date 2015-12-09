@@ -1,3 +1,4 @@
+//莫队算法
 typedef struct que{ 
 	int l,r,id;
 }que;

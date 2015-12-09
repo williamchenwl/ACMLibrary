@@ -1,3 +1,4 @@
+//最大流SAP
 int sap(int u,int flow){ 
 	if (u == T) return flow;
 	int tmp,rec = 0;

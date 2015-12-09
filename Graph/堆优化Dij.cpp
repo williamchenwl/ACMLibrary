@@ -1,3 +1,4 @@
+//堆优化Dij
 typedef struct seg{ 
 	
 	int id,va;

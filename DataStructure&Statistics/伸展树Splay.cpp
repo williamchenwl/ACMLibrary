@@ -1,3 +1,4 @@
+//伸展树Splay.cpp
 int tr[80001][2],num[80001],fa[80001];
 void rotate(int x,int &k)
 {
