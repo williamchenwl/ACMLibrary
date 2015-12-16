@@ -1,6 +1,0 @@
-1.后缀自动机 函数式线段树 AC自动机+DP Manacher 
-2.DP 斜率优化 三分查找 后缀数组
-3.SAP SPFA ZKW Hungary 
-4.莫比乌斯函数 
-5.
-6.
