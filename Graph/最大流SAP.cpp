@@ -1,8 +1,7 @@
-//最大流SAP
-int sap(int u,int flow){ 
+int sap(int u,int flow){
 	if (u == T) return flow;
 	int tmp,rec = 0;
-	for (int i = base[u]; i;i = nex[i]){ 
+	for (int i = base[u];i;i = nxt[i]){
 		int x = to[i];
 		if (fl[i] <= 0 || d[u] != d[x] + 1) continue;
 		tmp = sap(x,min(flow - rec,fl[i]));
@@ -14,12 +13,11 @@ int sap(int u,int flow){
 	num[++d[u]]++; return rec;
 }
 
-
-int nadd(int x,int y,int f){ 
+int nadd(int x,int y,int f){
 	to[++tot] = y; fl[tot] = f;
 	nxt[tot] = base[x]; base[x] = tot;
 	op[tot] = tot + 1;
-	to[++tot] = x; fl[tot] = f;
+	to[++tot] = x; fl[tot] = 0;
 	nxt[tot] = base[y]; base[y] = tot;
 	op[tot] = tot - 1;
 }
