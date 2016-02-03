@@ -23,18 +23,18 @@ int S,T; int cur[maxn];
 
 int min(int a,int b) {if (a<b) return a;else return b;}
 
-int aug(int u,int flow)
-  {   if (u==T) {ans+=flow*dis[S]; return flow;}
-      vis[u]=1; int now=0;
-      for (int i=base[u];i;i=v[i].next)
-      { int x=v[i].x; 
-        if (vis[x]||!v[i].f||dis[u]!=dis[x]+v[i].cost)
-       	  continue;
+int aug(int u,int flow){
+  if (u==T) {ans += flow*dis[S]; return flow;}
+  vis[u]=1; int now=0;
+  for (int i=base[u];i;i=v[i].next){
+       int x=v[i].x; 
+       if (vis[x]||!v[i].f||dis[u]!=dis[x]+v[i].cost) continue;
        int tmp=aug(x,min(flow-now,v[i].f));
        if (tmp) v[i].f-=tmp; v[v[i].op].f+=tmp;
        now+=tmp;  if (now==flow) return flow; 
-     } return now;
-  }
+     }
+  return now;
+}
 
 int modlable()
   {  int del=inf;
