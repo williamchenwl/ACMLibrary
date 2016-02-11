@@ -11,7 +11,7 @@ void manacher(){
 		if (mx >= i) p[i] = min(mx - i,p[2*id-i]);
 		else p[i] = 0;
 		for (;a[i+p[i]+1] == a[i - p[i]];p[i]++);
-		if (p[i]+i > mx) id = i,mx = p[i]+1;
+		if (p[i] + i > mx) id = i,mx = p[i]+1;
 	}
 }
 
