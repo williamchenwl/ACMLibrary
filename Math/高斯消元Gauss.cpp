@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //高斯消元Gauss.cpp
 int swap(int x,int y){
       for (int i=0;i<=n;i++){

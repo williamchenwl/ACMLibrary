@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //线段树
 typedef struct segment_tree{ 
 	int siz,tot;

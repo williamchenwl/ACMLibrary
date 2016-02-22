@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //pick定理
 #include <iostream>
 #include <cstring>

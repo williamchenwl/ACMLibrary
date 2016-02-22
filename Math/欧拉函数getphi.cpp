@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //欧拉函数
 //筛法
 for(int i=1;i<=n;i++) phi[i]=i; 

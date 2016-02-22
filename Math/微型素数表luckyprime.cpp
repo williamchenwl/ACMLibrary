@@ -1,4 +1,9 @@
-
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //微型素数表
 typedef long long ll;
 

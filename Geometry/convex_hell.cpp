@@ -1,8 +1,3 @@
-//凸包
-
-
-//注意凸包的判重和退化
-
 struct point
 {
 	double x,y;

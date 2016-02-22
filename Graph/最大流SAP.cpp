@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 int sap(int u,int flow){
 	if (u == T) return flow;
 	int tmp,rec = 0;

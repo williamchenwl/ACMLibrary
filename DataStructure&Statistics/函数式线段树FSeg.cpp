@@ -1,4 +1,9 @@
-//函数式线段树FSeg.cpp
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 int siz[N],root[N],sl[trsize],sr[trsize];
 
 void insert(int a,int b,int fx,int &nx,int p,int c){

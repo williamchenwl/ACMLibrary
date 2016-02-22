@@ -1,13 +1,17 @@
-/*离散化
-  fist edited by williamchen 2015/11/24
-  
- */
-  
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
+#define dtype int
+
 typedef struct discrete{ 
 
-	int tmp[N],n,tot;
+	dtype tmp[N];
+	int n,tot;
 
-	int search(int x){
+	int search(dtype x){
 		int l = 1,r = tot;
 		do{ 
 			int mid = (l + r) >> 1;

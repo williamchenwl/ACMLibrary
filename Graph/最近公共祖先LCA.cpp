@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //最近公共祖先LCA.cpp
 int dfs(int u){
      vis[u]=1;  

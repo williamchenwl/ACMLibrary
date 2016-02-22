@@ -1,13 +1,17 @@
-//主席树求区间众数+读入优化
-#include<cstdio>
-#include<iostream>
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/#include <cstdio>
+#include <iostream>
 using namespace std;
 int n,m,sz;
 int root[500010],ls[10000010],rs[10000010],sum[10000010];
 
 inline int read()
 {
-    char ch=getchar();
+    char ch=getchar	();
     while(!(ch>='0'&&ch<='9'))ch=getchar();
     int x=0;
     while(ch>='0'&&ch<='9'){x=x*10+(ch-'0');ch=getchar();}

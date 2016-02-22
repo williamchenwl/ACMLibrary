@@ -1,4 +1,9 @@
- 
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/ 
 //KMP
 typedef struct PString{
     char s[N];

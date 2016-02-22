@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 /*************************************************************************
 	> File Name: lucas.cpp
 	> Author: 

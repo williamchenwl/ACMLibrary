@@ -1,5 +1,9 @@
-//伸展树Splay.cpp
-int tr[80001][2],num[80001],fa[80001];
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/int tr[80001][2],num[80001],fa[80001];
 void rotate(int x,int &k)
 {
     int y=fa[x],z=fa[y],l,r;

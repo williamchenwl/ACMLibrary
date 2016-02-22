@@ -1,4 +1,9 @@
-
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 
 //大步小步法 用于求(Y^X = Z) mod P
 #define ll long long

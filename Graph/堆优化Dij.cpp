@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //堆优化Dij
 typedef struct seg{ 
 	

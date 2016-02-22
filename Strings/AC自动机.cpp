@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //AC自动机
 int trie[N][27],siz[N],tot = 0;
 

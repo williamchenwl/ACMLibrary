@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //回文字串Manacher
 void manacher(){ 
 	int m = 2 * n + 1;

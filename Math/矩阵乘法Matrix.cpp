@@ -1,4 +1,10 @@
-﻿//矩阵乘法
+﻿/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
+//矩阵乘法
 typedef long long ll;
 
 const int N = 105;

@@ -1,3 +1,11 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+    
+*/
+    
 typedef long long ll;
 
 ll v[M],vx[M],ians[N];

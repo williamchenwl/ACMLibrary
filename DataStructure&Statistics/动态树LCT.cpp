@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //动态树
 typedef struct link_cut_tree{ 
 

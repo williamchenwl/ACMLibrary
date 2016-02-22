@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 /*************************************************************************
 	> File Name: pollard_rho——质因数分解.cpp
 	> Author: 
