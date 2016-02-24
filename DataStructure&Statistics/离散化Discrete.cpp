@@ -1,7 +1,7 @@
 /*
-    correctly used times = 
+    correctly used times = 1
     used in = { 
-   	
+   		cf#343D,
     }
 */
 #define dtype int
@@ -22,7 +22,7 @@ typedef struct discrete{
 		return 0;
 	}
 
-	int init(int x,int a[]){ 
+	int init(int x,dtype a[]){ 
 		n = x;
 		tot = 0;
 		for (int i = 1;i <= n;i++) tmp[i] = a[i];
@@ -31,7 +31,7 @@ typedef struct discrete{
 			if (tmp[i] != tmp[i+1]) tmp[++tot] = tmp[i];
 		tmp[++tot] = tmp[n];
 		for (int i = 1;i <= n;i++) 
-			a[i] = search(a[i]);
+			posx[i] = search(a[i]);
 		return tot;
 	}
 
