@@ -1,11 +1,13 @@
 /*
     correctly used times = 1
     used in = { 
-   		hdu5634
+   		hdu5634,
     }
 */
 //线段树
 //
+typedef long long ll;
+
 typedef struct segment_tree{ 
 	int siz,tot;
 	int sl[N],sr[N];
