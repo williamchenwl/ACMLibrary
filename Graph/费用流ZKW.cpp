@@ -4,15 +4,6 @@
    	
     }
 */
-#include <cstdio>
-#include <algorithm>
-#include <iostream>
-#include <cstring>
-
-using namespace std;
-
-#define DEBUG printf("xxxxx");
-
 const int inf = ~0U>>1;
 
 const int N = 5010;
@@ -21,23 +12,25 @@ typedef struct seg{
     int to,op,cost,nxt,f;
 }seg;
 
-seg v[N*40]; int ans =0,tot,dis[N],base[N],vis[N],ttf = 0;
+seg v[N*40]; 
+
+int ans =0,tot,dis[N],base[N],vis[N],ttf = 0;
 
 int S,T; int cur[N];
 
 int aug(int u,int flow){
+
     if (u == T){
-        //DEBUG
-       // printf("%d %d\n",S,T);
         ans += flow * dis[S];
         ttf += flow;
         return flow;
     }
-    //DEBUG
+
     vis[u] = 1;
+
     int now = 0;
+
     for (int i = base[u];i;i = v[i].nxt){
-      //  DEBUG
         int x = v[i].to;
         if (vis[x] || v[i].f <= 0 || dis[u] != dis[x] + v[i].cost)
             continue;
@@ -52,7 +45,6 @@ int aug(int u,int flow){
 
 
 int modlabel(){
-    //DEBUG
     int del = inf;
     for (int i = S;i <= T;i++)
         if (vis[i]) for (int j = base[i];j;j = v[j].nxt)
@@ -71,11 +63,10 @@ int zkw(){
     for (int i = S;i <= T;i++) cur[i] = base[i];
     int fl,t = 0;
     do{
-        //DEBUG
         t = 0;
         while(t = aug(S,inf)) memset(vis,0,sizeof(vis));
     }while(modlabel());
-    printf("%d\n",ans);
+    return ans;
 }
 
 int add(int x,int y,int f,int c){
@@ -95,7 +86,6 @@ int main(){
         memset(dis,0,sizeof(dis));
         tot = 0; ans = 0; ttf = 0;
         memset(vis,0,sizeof(vis));
-        memset(cur,0,sizeof(cur));
         cin >> m >> n;
         int x;
         S = 0;

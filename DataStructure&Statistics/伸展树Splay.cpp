@@ -3,16 +3,22 @@
     used in = { 
    	
     }
-*/int tr[80001][2],num[80001],fa[80001];
-void rotate(int x,int &k)
-{
+*/
+
+const int N = 10000;
+
+int tr[80001][2],num[80001],fa[80001];
+
+void rotate(int x,int &k){
     int y=fa[x],z=fa[y],l,r;
-    if(tr[y][0]==x)l=0;else l=1;r=l^1;
+    if(tr[y][0]==x) l=0; else l=1;
+    r=l^1;
     if(y==k)k=x;
     else{if(tr[z][0]==y)tr[z][0]=x;else tr[z][1]=x;}
     fa[x]=z;fa[y]=x;fa[tr[x][r]]=y;
     tr[y][l]=tr[x][r];tr[x][r]=y;
 }
+
 void splay(int x,int &k)
 {
 	int y,z;

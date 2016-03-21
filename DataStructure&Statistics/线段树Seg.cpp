@@ -15,6 +15,7 @@ typedef struct segment_tree{
 	ll sum[N],flag[N],mx[N];
 
 	int init(int x){ 
+		//must be called
 		siz = x; tot = 0;
 		memset(sl,0,sizeof(sl));
 		memset(sr,0,sizeof(sr));
@@ -41,6 +42,7 @@ typedef struct segment_tree{
 	}
 
 	int build(int l,int r){
+		//must be called
 		int x = ++tot;
 		tl[x] = l; tr[x] = r;
 		if (l == r) return mx[x] = sum[x] = a[l],x;
@@ -52,7 +54,7 @@ typedef struct segment_tree{
 	}
 
 	inline void add(int x,int lx,int rx,ll c){ 
-		if (tl[x] >= lx && tr[x] <= rx) { 
+		if (tl[x] >= lx && tr[x] <= rx){ 
 			tagit(x,c);
 			return;
 		}
