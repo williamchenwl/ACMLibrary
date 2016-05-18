@@ -4,6 +4,11 @@
    	
     }
 */
+
+int base[N],num[N],d[N],ntot,tot;
+
+int fl[M],to[M],op[M],nxt[M];
+
 int sap(int u,int flow){
 	if (u == T) return flow;
 	int tmp,rec = 0;
@@ -26,4 +31,14 @@ int nadd(int x,int y,int f){
 	to[++tot] = x; fl[tot] = 0;
 	nxt[tot] = base[y]; base[y] = tot;
 	op[tot] = tot - 1;
+}
+
+
+int solve(){ 
+	memset(num,0,sizeof(num));
+	memset(d,0,sizeof(d));
+	for (int i = 0;i <= tot;i++) cur[i] = base[i];
+	int ans = 0;
+	while(d[S] < ntot) ans += sap(S,inf);
+	return ans;
 }

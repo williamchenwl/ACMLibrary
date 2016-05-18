@@ -9,14 +9,16 @@ typedef struct link_cut_tree{
 
 	int son[N][2],sum[N],f[N],key[N],tag[N];
 
+	//更新部分
 	int up(int x){ 
 		sum[x] = sum[son[x][0]] + sum[son[x][1]] + key[x];
 		//
 		//
 	}
 
+	/判断是否为根
 	bool isroot(int x){ 
-		return !f[x] ||  son[f[x]][0] != x && son[f[x]][1] !=x;
+		return !f[x] || son[f[x]][0] != x && son[f[x]][1] !=x;
 	} 
 
 	int reverse(int x){ 
