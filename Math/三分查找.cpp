@@ -4,3 +4,4 @@ while (l < r){
 		r = mid,ans = max(ans,f(mid));
 	else l = mid + 1;
 }
+

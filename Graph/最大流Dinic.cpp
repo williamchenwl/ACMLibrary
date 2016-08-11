@@ -1,110 +1,35 @@
-
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-#include<iostream>
-#include<cstdio>
-#include<cstdlib>
-#include<algorithm>
-#include<cmath>
-#include<cstring>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <algorithm>
+#include <cmath>
+#include <cstring>
 #define inf 1000000000
 #define ll long long
+
 using namespace std;
-int read()
-{
+
+int read(){
     int x=0,f=1;char ch=getchar();
     while(ch<'0'||ch>'9'){if(ch=='-')f=-1;ch=getchar();}
     while(ch>='0'&&ch<='9'){x=x*10+ch-'0';ch=getchar();}
     return x*f;
 }
+
 int n,m,cnt=1,ans,T;
+
 struct edge{int to,next,v;}e[200005];
+
 int h[1005],last[1005],q[1005];
+
 bool vis[1005];
+
 void insert(int u,int v,int w)
 {
 	e[++cnt].to=v;e[cnt].next=last[u];last[u]=cnt;e[cnt].v=w;
 	e[++cnt].to=u;e[cnt].next=last[v];last[v]=cnt;e[cnt].v=0;
 }
+
 bool bfs()
 {
 	int head=0,tail=1;
@@ -137,12 +62,13 @@ int dfs(int x,int f)
 	if(!used)h[x]=-1;
 	return used;
 }
-void dinic()
-{
-	while(bfs())ans+=dfs(0,inf);
+
+void dinic(){
+	while(bfs())
+		ans+=dfs(0,inf);
 }
-int main()
-{
+
+int main(){
 	n=read();T=n+85;
 	for(int i=1;i<=n;i++)
 		insert(0,i,1);

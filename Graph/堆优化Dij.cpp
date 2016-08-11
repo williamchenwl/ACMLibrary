@@ -47,9 +47,3 @@ int dij(int s){
     	Q.pop();
     }
 }
-
-
-int main(){ 
-
-
-}

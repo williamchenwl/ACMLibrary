@@ -4,6 +4,7 @@
    	
     }
 */
+    
 const int inf = ~0U>>1;
 
 const int N = 5010;

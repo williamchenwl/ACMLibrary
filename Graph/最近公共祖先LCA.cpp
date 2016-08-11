@@ -1,7 +1,7 @@
 /*
     correctly used times = 1
     used in = { 
-   	  cf343div2E
+   	  cf343div2E,
     }
 */
 //最近公共祖先LCA.cpp
@@ -15,6 +15,12 @@ int dfs(int u){
        }
 }
   
+int predo(){ 
+   dfs(1);
+   for (int i = 1;i <= 20;i++)
+    for (int j = 1; j <= n;j++)
+      dp[j][i] = dp[dp[j][i-1]][i-1];
+}
 
 int lca(int x,int y){ 
 	  if (x == y) return x;
