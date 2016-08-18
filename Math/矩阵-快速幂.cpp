@@ -1,10 +1,10 @@
-ï»¿/*
+/*
     correctly used times = 
     used in = { 
    	
     }
 */
-//çŸ©é˜µä¹˜æ³•
+//¾ØÕó³Ë·¨
 typedef long long ll;
 
 const int N = 105;
