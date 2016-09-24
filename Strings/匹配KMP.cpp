@@ -1,12 +1,24 @@
-
+/*
+    correctly used times = 1
+    used in = { 
+   	    cf631D,
+    }
+*/ 
 //KMP
+
 typedef struct PString{
-    char s[N];
+    
+    typedef char dtype;
 
-    int p[N],len;
+    dtype s[N];
 
-    int OnCreate(){
-        len = strlen(s);
+    int p[N],len,flag;
+
+    std::vector<int>v;
+
+    int OnCreate(dtype ss[],int lenx){
+        len = lenx;
+        for (int i = 0;i < lenx;i++) s[i] = ss[i];
         int j = -1; p[0] = -1;
         for (int i = 1;i < len;i++){
             if (s[i] != s[j + 1] && j != -1) j = p[j];
@@ -15,15 +27,17 @@ typedef struct PString{
         }
     }
 
-    int kmp(char pa[]){
-        int lenx = strlen(pa);
+    int kmp(dtype pa[],int lenx){
         int j = -1;
         for (int i = 0;i < lenx;i++){
-            if (pa[i] != s[j + 1] && j != -1) j = p[j];
+            while (pa[i] != s[j + 1] && j != -1) j = p[j];
             if (pa[i] == s[j + 1]) j++;
-            if (j == len - 1) return 1;
+            if (j == len - 1) ans++,flag = 1,j = p[j];
         }
-        return 0;
+        return flag;
     }
 
+    //hint:should be defined in global 
+    //all the input array should start at zero
+    
 }PString;

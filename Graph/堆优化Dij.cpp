@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
 //堆优化Dij
 typedef struct seg{ 
 	
@@ -40,10 +46,4 @@ int dij(int s){
     	vis[u] = 1;
     	Q.pop();
     }
-}
-
-
-int main(){ 
-
-
 }

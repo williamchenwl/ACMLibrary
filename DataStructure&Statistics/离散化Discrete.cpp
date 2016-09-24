@@ -1,13 +1,17 @@
-/*离散化
-  fist edited by williamchen 2015/11/24
-  
- */
-  
+/*
+    correctly used times = 2
+    used in = { 
+   		cf#343D,cf634D
+    }
+*/
+#define dtype int
+
 typedef struct discrete{ 
 
-	int tmp[N],n,tot;
+	dtype tmp[N];
+	int n,tot;
 
-	int search(int x){
+	int search(dtype x){
 		int l = 1,r = tot;
 		do{ 
 			int mid = (l + r) >> 1;
@@ -18,7 +22,7 @@ typedef struct discrete{
 		return 0;
 	}
 
-	int init(int x,int a[]){ 
+	int init(int x,dtype a[]){ 
 		n = x;
 		tot = 0;
 		for (int i = 1;i <= n;i++) tmp[i] = a[i];
@@ -27,7 +31,7 @@ typedef struct discrete{
 			if (tmp[i] != tmp[i+1]) tmp[++tot] = tmp[i];
 		tmp[++tot] = tmp[n];
 		for (int i = 1;i <= n;i++) 
-			a[i] = search(a[i]);
+			posx[i] = search(a[i]);
 		return tot;
 	}
 

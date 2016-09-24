@@ -1,4 +1,9 @@
-//位集Bitset.cpp
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*///位集Bitset.cpp
 #include <bitset>
 
 using namespace std;

@@ -1,4 +1,3 @@
-//随机数生成
 typedef struct Random{ 
  	
  	int seed,modnum,now;

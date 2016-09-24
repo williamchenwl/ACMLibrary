@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/	
 //树套树
 int build(int a,int b){ 
 	int x = ++tot;

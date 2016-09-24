@@ -1,3 +1,9 @@
+/*
+    correctly used times = 
+    used in = { 
+    
+    }
+*/
 //绳Rope
 #include<iostream>
 #include<cstdio>

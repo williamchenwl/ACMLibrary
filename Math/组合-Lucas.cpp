@@ -1,14 +1,11 @@
-/*************************************************************************
-	> File Name: lucas.cpp
-	> Author: 
-	> Mail: 
-	> Created Time: 2015年12月08日 星期二 13时35分34秒
- ************************************************************************/
-#include<string.h>
-#include<algorithm>
-#include<stdio.h>
+#include <string.h>
+#include <algorithm>
+#include <stdio.h>
+
 using namespace std;
+
 long long m,n,p;
+
 long long  pow(long long  a,long long  b,long long  mod)
 {
         long long  ans=1;

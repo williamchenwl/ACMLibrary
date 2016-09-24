@@ -1,4 +1,10 @@
 /*
+    correctly used times = 
+    used in = { 
+   	
+    }
+*/
+/*
 	BKDR_HASH是一种可动态变换的Hash函数
 	可以直接溢出
 */

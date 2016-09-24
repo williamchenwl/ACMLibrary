@@ -1,8 +1,3 @@
-//凸包
-
-
-//注意凸包的判重和退化
-
 struct point
 {
 	double x,y;
@@ -14,18 +9,21 @@ double det(point a,point b,point c,point d)
 	double x2=d.x-c.x,y2=d.y-c.y;
 	return x1*y2-x2*y1;
 }
+
 double dot(point a,point b,point c,point d)
 {
 	double x1=b.x-a.x,y1=b.y-a.y;
 	double x2=d.x-c.x,y2=d.y-c.y;
 	return x1*x2+y1*y2;
 }
+
 double dist(point a,point b)
 {
 	double xx=(a.x-b.x)*(a.x-b.x);
 	double yy=(a.y-b.y)*(a.y-b.y);
 	return sqrt(xx+yy);
 }
+
 point ps[100000+5];
 int N;
 bool cmp_x(const point &a,const point &b)
