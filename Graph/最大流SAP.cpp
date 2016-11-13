@@ -1,10 +1,3 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
-
 #include <cstdio>
 #include <iostream>
 #include <cstring>
@@ -53,6 +46,7 @@ ll solve(double k){
 	memset(d,0,sizeof(d));
 	memset(num,0,sizeof(num));
 	ll ans = 0;
+	num[0] = ntot;
  	while(d[S] < ntot) ans += sap(S,inf);
 	return ans;
 }

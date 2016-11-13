@@ -21,7 +21,7 @@ typedef struct PString{
         for (int i = 0;i < lenx;i++) s[i] = ss[i];
         int j = -1; p[0] = -1;
         for (int i = 1;i < len;i++){
-            if (s[i] != s[j + 1] && j != -1) j = p[j];
+            while (s[i] != s[j + 1] && j != -1) j = p[j];
             if (s[i] == s[j + 1]) j++;
             p[i] = j;
         }
