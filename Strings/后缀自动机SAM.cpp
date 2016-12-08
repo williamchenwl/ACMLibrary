@@ -1,10 +1,3 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
-//后缀自动机
 int last = 1,tot = 1;
 void add(int w){
 	int p = ++tot,x = last,r,q;

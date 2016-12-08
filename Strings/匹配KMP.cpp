@@ -1,11 +1,3 @@
-/*
-    correctly used times = 1
-    used in = { 
-   	    cf631D,
-    }
-*/ 
-//KMP
-
 typedef struct PString{
     
     typedef char dtype;
@@ -39,5 +31,5 @@ typedef struct PString{
 
     //hint:should be defined in global 
     //all the input array should start at zero
-    
+	    
 }PString;

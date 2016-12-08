@@ -1,3 +1,4 @@
+
 //a perfect version for link-cut-tree
 #include <cstdio>
 #include <iostream>
@@ -25,7 +26,7 @@ void LCTInit(){
 }
 
 bool isroot(int x){
-	return !f[x] || son[f[x]][0] != x && son[f[x]][1] != x;
+	return !f[x] || (son[f[x]][0] != x && son[f[x]][1] != x);
 }
 
 void reverse(int x){

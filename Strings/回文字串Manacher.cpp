@@ -1,16 +1,8 @@
-/*
-    correctly used times = 
-    used in = { 
-   		hdu3068,
-    }
-*/
-//回文字串Manacher
-
 int manacher(){
 	int m = 2 * n + 1;
 	
 	for (int i = 1;i <= n;i++){
-		a[i << 1] = s[i-1];
+		a[i << 1] = s[i - 1];
 		a[(i << 1) + 1] = '#';
 	}
 	
@@ -28,5 +20,3 @@ int manacher(){
 	for (int i = 1;i <= m;i++) if (p[i] > ans) ans = p[i];
 	return ans;
 }
-
-

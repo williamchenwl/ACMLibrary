@@ -1,11 +1,3 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
-//AC自动机
- 
 int son[N][4],w[N],fail[N],id[N],n,L,tot = 0;
 
 int timx = 0;
