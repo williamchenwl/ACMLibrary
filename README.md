@@ -1,3 +1,15 @@
+Strength 
+
+    1.Our model takes various variables into account to measure the maximum traffic volume so that it is reliable and robust for solving the problem.
+    2.We improve the normal network flow model to minimum cost maximum flow model so that the simulated cooperating system can not only guarantee the maximum flow at a time but also cost least congestion extent.
+    3.We considered both dynamic and static feature of the traffic network.
+    4.We take both the micro and marco view on the influence of bringing self-driving car into the traffic system.
+
+Weakness
+    1. The distriubtion of traffic flow in a day is not accurately estimated.
+    2. Some part of the model is specified for the situation of big Settatle.
+    3. Assumption of the mechanism of self-driving car may not fit the real situation in the future since it can't be precisely estimated.
+
 Summary:  
 
 ​     Since self-driving car is on it's way to change the life of human, we try to make assumptions on how will self-driving car improve the traffic state of big Seattle.
