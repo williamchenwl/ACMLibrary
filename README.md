@@ -1,3 +1,15 @@
+Summary:  
+
+​     Since self-driving car is on it's way to change the life of human, we try to make assumptions on how will self-driving car improve the traffic state of big Seattle.
+
+​     First, we look into the impact of self-driving car on traffic congestion in a micro way.  We take the car-following behavior, number of lanes and road length into account, and propose a urban traffic flow model to measure the capability of road to load traffic flow. We then optimize the road capability by distribute different numbers of lanes to self-driving car.
+
+​    To explore how self-driving car might contributes to the development of traffic jam,  we build a Bayesian network to represent the dynamic process of congestion, we use the belief propagation algorithm to generate each road's weighted contribution factor to the whole traffic congestion system with or without the presence of self-driving car.  From the result we can see that different roads contribute to the traffic jam in great difference. 
+
+​    Finally, based on the previous model, we propose a minimum cost and maximum flow model to simulate the intelligent cooperating navigation system of self-driving car. We choose the maximum traffic capacity of each road as the flow limit and the weighted contribution factor as the cost.  In this way we distribute the car flow in order to minimize the whole congestion condition while maximize the flow from source to destination. We apply the model to the map data of big Seattle while considering different proportion of self-driving car. We produce the result that only the percentage of self-driving car surpass 0.385 we can get a significant remission of traffic congestion. 
+
+
+
 #### 1.Traffic Flow Model
 
 
