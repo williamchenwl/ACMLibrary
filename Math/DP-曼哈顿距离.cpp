@@ -3,9 +3,12 @@
 #include <cstring>  
 #include <algorithm>  
 #include <cmath>  
+
 #define MAXN 4001003  
 #define MAXM 88888  
+
 using namespace std;  
+
 int n, m;  
 int W;  
 int h[MAXN], cnt;  
