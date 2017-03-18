@@ -78,32 +78,48 @@ matrix get(ll m,ll k){
  	return a;
 }
 
+ll getf(ll a,ll b,ll n){
+	matrix A; 
+	A.va[1][1] = 1;
+	A.va[1][2] = 1;
+	A.va[2][1] = 1;
+	A.va[2][2] = 0;
+	A.n = 2;
+	A.m = 2;
+	B.va[1][1] = b;
+	B.va[2][1] = a;
+	B.n = 2;
+	B.m = 1;
+	if (n <= 2){  
+		if (n == 1) return a;
+		if (n == 2) return b;
+	}
+	A = power(A,n - 2);  
+	A = mul(A,B);
+	return A.va[1][1];
+}
 
-/*
-ll solve(ll n,ll m,ll k){
-	matrix coe = get(m,k);
-	//putmatrix(coe);
-	matrix now;
-	now.init(m+1,1);
-	now.va[1][1] = 1;
-	coe = power(coe,n);
-	now = mul(coe,now);
-	//putmatrix(now);
-	ll ans = 0;
-	for (int i = 1;i <= m + 1;i++)
-        (ans += now.va[i][1]) %= M;
-    return ans;
+ll calc(ll a,ll b,ll n){  
+	if (n < 4) return 0;
+	if (n == 4) return 1;
+	int pos = (n - 1) / 4;
+	pos++;
+	ll ans1 = getf(0,1,2 * pos - 2);
+	ll ans2 = getf(0,1,2 * pos - 1);
+	ll ans3 = getf(0,1,2 * pos);
+	if (n % 4 == 1) return ans2;
+	if (n % 4 == 2) return (ans1 + ans2 - 1 + M) % M;
+	if (n % 4 == 3) return (2 * ans2 + ans1 - 1 + M) % M;
+	return ans3;
 }
 
 int main(){
 	int T;
-	cin >> T;
-	while(T--){
-		ll n,m,k;
-		cin >> n >> m >> k;
-		ll ans = 0;
-		ans = solve(n,m,k);
-		ans -= solve(n,m-1,k);
-		cout << ((ans % M) + M)%M << endl;	}
+	ll n,a,b;
+	while(cin >> a >> b >> n){   
+		ll ans = getf(a,b,n);
+		ans = (ans - calc(a,b,n) + M) % M;
+		cout << ans << endl;
+	}
 }
 

@@ -54,7 +54,6 @@ int main(){
 
 	ll ans = 0;
 
-
 	for (int i = 1;i <= m;i++){
 
 		int pl = q[i].l,pr = q[i].r;
