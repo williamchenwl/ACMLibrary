@@ -15,11 +15,9 @@ int sgn(double x)
 	if(x<0) return -1;
 	return 1;
 }
-
 struct point
 {
-	double x,y;
-	point(){};
+	double x,y; point(){};
 	point (double x0,double y0)
 	{
 		x=x0,y=y0;
@@ -41,41 +39,69 @@ struct point
 		return x*b.y-y*b.x;
 	}
 
-	void transXY(double xita)//旋转西塔角度
+	void transXY(double B)//Counterclockwise
 	{
 		double tx=x,ty=y;
-		x = tx*cos(B)-ty*sin(B);
-		y = tx*sin(B)+ty*cos(B);
+		x = tx*cos(B)-ty*sin(B); y = tx*sin(B)+ty*cos(B);
 	}
+
+	bool operator == (const point &b)const
+    {
+        return (sgn(x-b.x)==0 && sgn(y-b.y)==0);
+    }
+    double len()
+    {
+        double t = x*x + y*y;
+        return sqrt(t);
+    }
+    point unit()
+    {
+        double l = len();
+        double xx = x/l;
+        double yy = y/l;
+        return point(xx,yy);
+    }
+    point neg()
+    {
+        return point(-x,-y);
+    }
 
 
 };
 
-struct  line
+
+struct line
 {
-	point s,e;
-	line(){};
+	point s,e; line(){};
 	line(point a,point b)
 	{
 		s=a,e=b;
 	}
-	pair<int ,point> operator &(const line &b)const//直线相交,0重合，1平行，2返回交点
+	pair<int ,point> operator &(const line &b)const//two line insert
 	{
 		point res=s;
-		if(sgn((s-e)^(b.s-b.e))==0)
+		if(sgn((s-e)^(b.s-b.e))==0)// parallel
 		{
-			if(sgn((s-b.e)^(b.s-b.e))==0)
-				return make_pair(0,res);
+			if(sgn((s-b.e)^(b.s-b.e))==0) return make_pair(0,res);//coincide
 			else
-				return make_pair(1,res);
+			return make_pair(1,res);
 		}
-		double t = ((s-b.s)^(b.s-b.e))/((s-e)^(b.s-b.e));
-		res.x += (e.x-s.x)*t;
-		res.y += (e.y-s.y)*t;
+		double t = ((s-b.s)^(b.s-b.e))/((s-e)^(b.s-b.e)); res.x += (e.x-s.x)*t;
+		res.y += (e.y-s.y)*t; 
 		return make_pair(2,res);
 	}
 
 
+	for(int i=0;i<4;i++)
+    {
+        line t(A[i],A[(i+1)%4]);
+        l1.pb(t);
+    }
+	point v;
+    point get_point(double t)// used in rush(line and circle insert)
+    {
+        return point(s.x+v.x*t,s.y+v.y*t);
+    }
 
 };
 
@@ -92,7 +118,39 @@ double dist(point a,point b)
 	return sqrt(xx*xx+yy*yy);
 }
 
-//*判断线段相交
+bool _cmp(point p1,point p2) //相对于P【0】j极角排序
+{  
+	double tmp = (p1-list[0])^(p2-list[0]);  
+	if(sgn(tmp) > 0)
+		return true;  
+	else if(sgn(tmp) == 0 && sgn(dist(p1,list[0]) - dist(p2,list[0])) <= 0)   
+		return true;  
+	else return false; 
+}
+point rush(circle c,line l,bool &flag)//圆与直线交点
+{
+    double a = l.v.x;
+    double b = l.s.x - c.heart.x;
+    double cc = l.v.y;
+    double d = l.s.y - c.heart.y;
+
+    double e = a*a+cc*cc;
+    double f = 2*(a*b+cc*d);
+    double g = b*b+d*d-c.r*c.r;
+    double delta = f*f-4*e*g;
+    if(sgn(delta)<=0)
+    {
+        flag = 0;
+        return point(0,0);
+    }
+    else{
+        double t = (-f-sqrt(delta))/(2*e);///////////////
+        flag = 1;
+        return l.get_point(t);
+    }
+}
+
+//判断线段相交
 bool inter(line l1,line l2)
 {
 	return
@@ -104,7 +162,7 @@ bool inter(line l1,line l2)
     sgn((l1.s-l2.e)^(l2.s-l2.e))*sgn((l1.e-l2.e)^(l2.s-l2.e)) <= 0;
 }
 
-bool Seg_inter_line(line l1,line l2)//直线l1与线段l2是否相交
+bool Seg_inter_line(line l1,line l2)//line l1与seg l2是否相交
 {
 	return sgn((l2.s-l1.e)^(l1.s-l1.e))*sgn((l2.e-l1.e)^(l1.s-l1.e))<=0;
 }
@@ -122,7 +180,7 @@ point point_to_segline(point p,line l) //点到线段距离
 {
 	point ret;
 	double t=(l.e-l.s)*(p-l.s);
-	t=fabs(t)/dist(l.s,l.e)/dist(l.s,l.e);
+	t=fabs(t)/dist(l.s,l.e)/dist(l.s,l.e); 
 	if(t>=0&&t<=1)
 	{
 		ret.x=l.s.x+(l.e.x-l.s.x)*t;
@@ -130,7 +188,7 @@ point point_to_segline(point p,line l) //点到线段距离
 	}
 	else
 	{
-		if(dist(p,l.s)<dist(p,l.e))
+		if(dist(p,l.s)<dist(p,l.e)) 
 			ret=l.s;
 		else
 			ret=l.e;
@@ -142,12 +200,10 @@ point point_to_segline(point p,line l) //点到线段距离
 double areaMulti(point p[],int n)//计算多边形
 {
 	double ans=0;
-	for (int i = 1; i < n-2; ++i)
+	for (int i = 1; i < n; ++i)
 	{
 		/* code */
-		double temp=(p[i+1]-p[i])^(p[0]-p[i]);
-		temp/=2;
-		ans+=fabs(temp);
+		ans += (p[i]^p[(i+1)%n])/2; 
 	}
 	return ans;
 }
