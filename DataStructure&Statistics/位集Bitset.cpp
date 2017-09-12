@@ -1,9 +1,9 @@
 /*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*///位集Bitset.cpp
+    some operations can be expressed as the
+    "or xor and >> <<" operations for some binary number
+    take care of the memory problem
+*/
+
 #include <bitset>
 
 using namespace std;
@@ -12,11 +12,13 @@ const int N = 200010;
 
 bitset<N>a;
 
-int example(){ 
+int example(){
 	a = a ^ a;
 	a ^= (a << x);
 	a[0] = 1;
 	a[1] = 0;
+	a.set(1) // set the position 1 to 1
+	a.reset() //clear to 0
 }
 
 

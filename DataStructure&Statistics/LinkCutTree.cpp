@@ -1,10 +1,8 @@
+/*
+	a perfect version for link-cut-tree
+*/
 
-//a perfect version for link-cut-tree
-#include <cstdio>
-#include <iostream>
-#include <cstring>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 const int N = 610000;
@@ -94,7 +92,11 @@ void access(int x){
 }
 
 
-//获得目前所在集合的根
+/* 
+	get the root of the current set
+	can be used as the union-find set
+*/
+
 int root(int x){
 	access(x);
 	splay(x);
@@ -208,7 +210,4 @@ int main(){
 		printf("\n");
 	}
 }
-
-
-
 

@@ -1,14 +1,4 @@
-#include <cstdio>
-#include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <cstdlib>
-
-using namespace std;
-
-typedef long long ll;
-
-const int N = 105;
+const int N = 10;
 
 const ll M = 1e9+7;
 
@@ -44,9 +34,11 @@ matrix mul(matrix a,matrix b){
 	matrix c;
 	c.init(a.n,b.m);
 	for (int i = 1;i <= a.n;i++)
-		for (int j = 1;j <= b.m;j++)
+		for (int j = 1;j <= b.m;j++){
 			for (int k = 1;k <= a.m;k++)
-				(c.va[i][j] += a.va[i][k] * b.va[k][j]) %= M;
+				c.va[i][j] += a.va[i][k] * b.va[k][j] % M;
+			c.va[i][j] %= M;
+		}
 	return c;
 }
 
@@ -79,7 +71,7 @@ matrix get(ll m,ll k){
 }
 
 ll getf(ll a,ll b,ll n){
-	matrix A; 
+	matrix A;
 	A.va[1][1] = 1;
 	A.va[1][2] = 1;
 	A.va[2][1] = 1;
@@ -90,16 +82,16 @@ ll getf(ll a,ll b,ll n){
 	B.va[2][1] = a;
 	B.n = 2;
 	B.m = 1;
-	if (n <= 2){  
+	if (n <= 2){
 		if (n == 1) return a;
 		if (n == 2) return b;
 	}
-	A = power(A,n - 2);  
+	A = power(A,n - 2);
 	A = mul(A,B);
 	return A.va[1][1];
 }
 
-ll calc(ll a,ll b,ll n){  
+ll calc(ll a,ll b,ll n){
 	if (n < 4) return 0;
 	if (n == 4) return 1;
 	int pos = (n - 1) / 4;
@@ -116,7 +108,7 @@ ll calc(ll a,ll b,ll n){
 int main(){
 	int T;
 	ll n,a,b;
-	while(cin >> a >> b >> n){   
+	while(cin >> a >> b >> n){
 		ll ans = getf(a,b,n);
 		ans = (ans - calc(a,b,n) + M) % M;
 		cout << ans << endl;

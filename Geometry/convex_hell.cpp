@@ -7,8 +7,11 @@ double det(point a,point b,point c,point d)
 {
 	double x1=b.x-a.x,y1=b.y-a.y;
 	double x2=d.x-c.x,y2=d.y-c.y;
-	return x1*y2-x2*y1;
+	return x1*y2-x2*y1
+
 }
+
+
 
 double dot(point a,point b,point c,point d)
 {

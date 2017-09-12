@@ -23,9 +23,10 @@ bool spfa(){
              if (!vis[x]) S.push(x);    
              d[x] = d[u]+c[i];
              vis[x] = 1;    
-             }
-         }return 1;    
-   }
+          }
+  }
+  return 1;    
+}
 
 
 

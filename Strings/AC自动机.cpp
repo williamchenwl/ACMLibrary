@@ -31,11 +31,11 @@ void build(){
 	for (int i = 0;i < 4;i++)
 	if (son[0][i]) q[++t] = son[0][i];
 	while(h <= t)for(x = q[h++],i = 0;i < 4;i++){
-	if (son[x][i]){ 
-		fail[son[x][i]] = son[fail[x]][i];
-		q[++t] = son[x][i];
-		id[son[x][i]] |= id[fail[son[x][i]]];
-	}
-	else son[x][i] = son[fail[x]][i];
+		if (son[x][i]){ 
+			fail[son[x][i]] = son[fail[x]][i];
+			q[++t] = son[x][i];
+			id[son[x][i]] |= id[fail[son[x][i]]];
+		}
+		else son[x][i] = son[fail[x]][i];
 	}
 }
