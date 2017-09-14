@@ -1,18 +1,3 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
-#include <cstdio>
-#include <algorithm>
-#include <iostream>
-#include <cstring>
-#include <queue>
-using namespace std;
-
-#define DEBUG printf("xxxxx");
-
 const int inf = ~0U>>1;
 
 const int N = 610;

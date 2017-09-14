@@ -1,10 +1,3 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
-//堆优化Dij
 typedef struct seg{ 
 	
 	int id,va;
@@ -23,15 +16,10 @@ priority_queue<seg>Q;
 bool vis[N];
 
 int dij(int s){ 
-	
 	for (int i = 1;i <= n;i++) d[i] = inf;
-
-	d[s] = 0; 
-	
+	d[s] = 0;
 	memset(vis,0,sizeof(vis));
-	
 	Q.push(seg(s,d[s]));
-    
     while (!Q.empty()){ 
     	seg tmp = Q.top();
     	while (vis[tmp.id]) {Q.pop(); tmp = Q.top();}

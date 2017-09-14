@@ -51,14 +51,19 @@ matrix formi(int len){
 	return c;
 }
 
+
 matrix power(matrix a,ll b){
 	if (b <= 0) return formi(a.n);
 	if (b == 1) return a;
-	matrix tmp = power(a,b >> 1);
-	tmp = mul(tmp,tmp);
-	if (b & 1) tmp = mul(tmp,a);
-	return tmp;
+	matrix ans; ans = formi(a.n);
+    while(b){
+        if (b & 1) ans = mul(ans,a);
+        a = mul(a,a);
+        b >>= 1;
+    }
+    return ans;
 }
+
 
 matrix get(ll m,ll k){
 	matrix a;
@@ -68,41 +73,6 @@ matrix get(ll m,ll k){
 	for (int i = 1;i <= m;i++)
 	 a.va[i+1][i] = k;
  	return a;
-}
-
-ll getf(ll a,ll b,ll n){
-	matrix A;
-	A.va[1][1] = 1;
-	A.va[1][2] = 1;
-	A.va[2][1] = 1;
-	A.va[2][2] = 0;
-	A.n = 2;
-	A.m = 2;
-	B.va[1][1] = b;
-	B.va[2][1] = a;
-	B.n = 2;
-	B.m = 1;
-	if (n <= 2){
-		if (n == 1) return a;
-		if (n == 2) return b;
-	}
-	A = power(A,n - 2);
-	A = mul(A,B);
-	return A.va[1][1];
-}
-
-ll calc(ll a,ll b,ll n){
-	if (n < 4) return 0;
-	if (n == 4) return 1;
-	int pos = (n - 1) / 4;
-	pos++;
-	ll ans1 = getf(0,1,2 * pos - 2);
-	ll ans2 = getf(0,1,2 * pos - 1);
-	ll ans3 = getf(0,1,2 * pos);
-	if (n % 4 == 1) return ans2;
-	if (n % 4 == 2) return (ans1 + ans2 - 1 + M) % M;
-	if (n % 4 == 3) return (2 * ans2 + ans1 - 1 + M) % M;
-	return ans3;
 }
 
 int main(){
