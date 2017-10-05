@@ -1,3 +1,16 @@
+[TOC]
+
+
+
+## Glory-ICPC-2017-Template
+
+#### 1.字符串
+
+##### 1.1 AC自动机
+
+多组数据必须调用init()，结构为trie图，根节点为0
+
+```c++
 int son[N][4],w[N],fail[N],id[N],n,L,tot = 0;
    
 int mapp(char ch){
@@ -52,3 +65,46 @@ int ask(const string& s){
 		}
 	}
 }
+```
+
+
+
+##### 1.2 KMP
+
+
+
+```c++
+typedef struct PString{
+    
+    typedef char dtype;
+
+    dtype s[N];
+
+    int p[N],len,flag;
+
+    std::vector<int>v;
+
+    int OnCreate(dtype ss[],int lenx){
+        len = lenx;
+        for (int i = 0;i < lenx;i++) s[i] = ss[i];
+        int j = -1; p[0] = -1;
+        for (int i = 1;i < len;i++){
+            while (s[i] != s[j + 1] && j != -1) j = p[j];
+            if (s[i] == s[j + 1]) j++;
+            p[i] = j;
+        }
+    }
+
+    int kmp(dtype pa[],int lenx){
+        int j = -1;
+        for (int i = 0;i < lenx;i++){
+            while (pa[i] != s[j + 1] && j != -1) j = p[j];
+            if (pa[i] == s[j + 1]) j++;
+            if (j == len - 1) ans++,flag = 1,j = p[j];
+        }
+        return flag;
+    }
+  
+}PString;
+```
+
