@@ -4,6 +4,8 @@ using namespace std;
 
 const double eps = 1e-8;
 
+const double pi = acos(-1.0);
+
 int sgn(double x){   
 	if (x < eps) return -1;
 	if (x > eps) return 0;
@@ -109,7 +111,7 @@ double dist_point_to_segment(vec p,vec a,vec b){
 
 struct circle{    
 	vec c; double r;
-	circle(vec c = vec(0,0),double r = 0):c(c),r(r){}
+	circle(vec c = vec(0,0),double r = 0):c(_c),r(_r){}
 };
 
 bool circle_line_intersection(circle c,vec a,vec b,double& t0,double& t1){   
@@ -140,6 +142,23 @@ double circle_triangle_intersection(circle c,vec a,vec b){
 	
 }
 
+
+/*
+	圆面积交
+*/
+
+
+double cir_area(circle A,circle B){  
+	double d = (A.c - B.c).len();
+	if (d >= A.r + B.r) return 0;
+	double r1 = min(A.r,B.r);
+	double r2 = max(A.r,B.r);
+	if (r2 - r1 >= d)
+		return pi * r1 * r1;
+	double ang1 = acos((r1 * r1 + d * d - r2 * r2) / (2 * r1 * d));
+	double ang2 = acos((r2 * r2 + d * d - r1 * r1) / (2 * r2 * d));
+	return ang1 * r1 * r1 + ang2 * r2 * r2 - r1 * d * sin(ang1);
+}
 
 
 

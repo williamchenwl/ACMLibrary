@@ -1,4 +1,3 @@
-
 typedef struct segment_tree{
 
     int siz,tot;

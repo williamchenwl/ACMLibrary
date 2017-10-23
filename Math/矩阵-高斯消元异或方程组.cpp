@@ -2,8 +2,10 @@
 #include <cstring>  
 #include <cmath>  
 #include <algorithm>  
+
 #define ll long long  
 #define mod 1000000007  
+
 using namespace std;  
 const int N=2000;  
 const int M=310;  
@@ -52,6 +54,7 @@ int solve(){
     int b=n-Rank(mat);//b个自由元  
     return two[b]-1;//减去全为0的解  
 }  
+
 int main() {  
     getPrime();  
     for(int i=1;i<M;i++)two[i]=two[i-1]*2%mod;  

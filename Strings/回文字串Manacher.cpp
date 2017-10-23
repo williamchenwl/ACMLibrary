@@ -1,4 +1,5 @@
 int manacher(){
+
 	int m = 2 * n + 1;
 	
 	for (int i = 1;i <= n;i++){
@@ -17,6 +18,7 @@ int manacher(){
 	}
 
 	int ans = 0;
-	for (int i = 1;i <= m;i++) if (p[i] > ans) ans = p[i];
+	for (int i = 1;i <= m;i++) 
+		if (p[i] > ans) ans = p[i];
 	return ans;
 }

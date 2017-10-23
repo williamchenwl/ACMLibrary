@@ -27,14 +27,13 @@ int guass(){
 int solve(){
     double ans[N];
     ans[n]=1;
-    for (int i=n;i>=1;i--)
-      {  double sum=0;
-         for (int j=i;j<=n;j++)
-         sum-=ans[j]*c[i][j];
-         ans[i-1]=sum/c[i][i-1];
-         }  
-     for (int i=0;i<n;i++)
-      if (i) printf(" %.3lf",ans[i]);
-      else printf("%.3lf",ans[i]); 
-      printf("\n");
+    for (int i=n;i>=1;i--){
+      double sum=0;
+      for (int j=i;j<=n;j++)  sum-=ans[j]*c[i][j];
+      ans[i-1]=sum/c[i][i-1];
+    }  
+   	for (int i=0;i<n;i++)
+    if (i) printf(" %.3lf",ans[i]);
+    else printf("%.3lf",ans[i]); 
+    printf("\n");
 }
