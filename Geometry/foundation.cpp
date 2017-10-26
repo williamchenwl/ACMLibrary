@@ -41,7 +41,7 @@ struct point
 		return x*b.y-y*b.x;
 	}
 
-	void transXY(double xita)//Ğı×ªÎ÷Ëş½Ç¶È
+	void transXY(double xita)//æ—‹è½¬è¥¿å¡”è§’åº¦
 	{
 		double tx=x,ty=y;
 		x = tx*cos(B)-ty*sin(B);
@@ -59,7 +59,7 @@ struct  line
 	{
 		s=a,e=b;
 	}
-	pair<int ,point> operator &(const line &b)const//Ö±ÏßÏà½»,0ÖØºÏ£¬1Æ½ĞĞ£¬2·µ»Ø½»µã
+	pair<int ,point> operator &(const line &b)const//ç›´çº¿ç›¸äº¤,0é‡åˆï¼Œ1å¹³è¡Œï¼Œ2è¿”å›äº¤ç‚¹
 	{
 		point res=s;
 		if(sgn((s-e)^(b.s-b.e))==0)
@@ -92,7 +92,7 @@ double dist(point a,point b)
 	return sqrt(xx*xx+yy*yy);
 }
 
-//*ÅĞ¶ÏÏß¶ÎÏà½»
+//*åˆ¤æ–­çº¿æ®µç›¸äº¤
 bool inter(line l1,line l2)
 {
 	return
@@ -104,12 +104,12 @@ bool inter(line l1,line l2)
     sgn((l1.s-l2.e)^(l2.s-l2.e))*sgn((l1.e-l2.e)^(l2.s-l2.e)) <= 0;
 }
 
-bool Seg_inter_line(line l1,line l2)//Ö±Ïßl1ÓëÏß¶Îl2ÊÇ·ñÏà½»
+bool Seg_inter_line(line l1,line l2)//ç›´çº¿l1ä¸çº¿æ®µl2æ˜¯å¦ç›¸äº¤
 {
 	return sgn((l2.s-l1.e)^(l1.s-l1.e))*sgn((l2.e-l1.e)^(l1.s-l1.e))<=0;
 }
 
-point point_to_line(point p,line l)//µãµ½Ö±Ïß¾àÀë
+point point_to_line(point p,line l)//ç‚¹åˆ°ç›´çº¿è·ç¦»
 {
 	point ret;
 	double t=(l.e-l.s)*(p-l.s)/dist(l.s,l.e);
@@ -118,7 +118,7 @@ point point_to_line(point p,line l)//µãµ½Ö±Ïß¾àÀë
 	return ret;
 }
 
-point point_to_segline(point p,line l) //µãµ½Ïß¶Î¾àÀë
+point point_to_segline(point p,line l) //ç‚¹åˆ°çº¿æ®µè·ç¦»
 {
 	point ret;
 	double t=(l.e-l.s)*(p-l.s);
@@ -139,7 +139,7 @@ point point_to_segline(point p,line l) //µãµ½Ïß¶Î¾àÀë
 }
 
 
-double areaMulti(point p[],int n)//¼ÆËã¶à±ßĞÎ
+double areaMulti(point p[],int n)//è®¡ç®—å¤šè¾¹å½¢
 {
 	double ans=0;
 	for (int i = 1; i < n-2; ++i)
@@ -160,7 +160,7 @@ bool onSeg(point p,line l)
 	sgn(((p.y-l.s.y)*(p.y-l.e.y))<=0);
 }
 /*
-µãÊÇ·ñÔÚÍ¹±ßĞÎÄÚ£¬-1Íâ£¬0ÉÏ¸ö£¬1ÄÚ
+ç‚¹æ˜¯å¦åœ¨å‡¸è¾¹å½¢å†…ï¼Œ-1å¤–ï¼Œ0ä¸Šä¸ªï¼Œ1å†…
 */
 int inConvexPoly(point a,point p[],int n)
 {
@@ -174,7 +174,7 @@ int inConvexPoly(point a,point p[],int n)
 }
 
 /*
-µãÊÇ·ñÔÚ¶à±ßĞÎÄÚ£¬ÊÇ1£¬·ñ-1£¬±ß½çÉÏ0
+ç‚¹æ˜¯å¦åœ¨å¤šè¾¹å½¢å†…ï¼Œæ˜¯1ï¼Œå¦-1ï¼Œè¾¹ç•Œä¸Š0
 */
 int inPoly(point p,point poly[],int n)
 {
@@ -218,7 +218,7 @@ int inPoly(point p,point poly[],int n)
 }
 
 /*
-ÅĞ¶ÏÊÇ·ñÊÇÍ¹±ßĞÎ
+åˆ¤æ–­æ˜¯å¦æ˜¯å‡¸è¾¹å½¢
 */
 bool inConvex(point poly[],int n)
 {
@@ -232,7 +232,7 @@ bool inConvex(point poly[],int n)
 	return 1;
 }
 
-//Á½¸öÔ²µÄ¹«¹²²¿·ÖÃæ»ı
+//ä¸¤ä¸ªåœ†çš„å…¬å…±éƒ¨åˆ†é¢ç§¯
 double Area_of_overlap(Point c1,double r1,Point c2,double r2)
 {
 	double d = dist(c1,c2);
@@ -249,7 +249,7 @@ double Area_of_overlap(Point c1,double r1,Point c2,double r2)
 }
 
 /*
-ÈıµãÇóÔ²ĞÄ×ø±ê£¨Èı½ÇĞÎÍâĞÄ£©
+ä¸‰ç‚¹æ±‚åœ†å¿ƒåæ ‡ï¼ˆä¸‰è§’å½¢å¤–å¿ƒï¼‰
 */
 
 point waixin(point a,point b,point c)
@@ -262,8 +262,8 @@ point waixin(point a,point b,point c)
 
 
 /*
-°ëÆ½Ãæ½» £¨From UESTC£©
-Ö±Ïß×ó±ß´ú±íÓĞĞ§ÇøÓò
+åŠå¹³é¢äº¤ ï¼ˆFrom UESTCï¼‰
+ç›´çº¿å·¦è¾¹ä»£è¡¨æœ‰æ•ˆåŒºåŸŸ
 */
 
 bool HPIcmp(line a,line b)
