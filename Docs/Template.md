@@ -54,7 +54,6 @@ void build(){
 		else son[x][i] = son[fail[x]][i];
 	}
 }
-
 int ask(const string& s){  
 	int ans = 0;
 	for (int l = s.length(),x = 0,w,i = 0;i < l;i++){  
@@ -1371,6 +1370,14 @@ int main()
     }
     return 0;
 }
+```
+
+###### 2.11.4 next_permutation
+
+```c++
+next_permutation(a + 0,a + n);
+//这使得排列a变成自己的下一个排列
+//原理是从尾部往前寻找到第一个相邻顺序对，记为i和i+1，再末尾开始找到第一个比i大的位置j,交换i和j，再翻转i以后的所有数
 ```
 
 
@@ -3421,9 +3428,51 @@ ll det(int n){
 }
 ```
 
+##### 4.12 康托展开
+
+```c++
+     int  fac[] = {1,1,2,6,24,120,720,5040,40320}; //i的阶乘为fac[i]  
+    // 康托展开-> 表示数字a是 a的全排列中从小到大排，排第几  
+    // n表示1~n个数  a数组表示数字。  
+    int kangtuo(int n,char a[])  
+    {  
+        int i,j,t,sum;  
+        sum=0;  
+        for( i=0; i<n ;++i)  
+        {  
+            t=0;  
+            for(j=i+1;j<n;++j)  
+                if( a[i]>a[j] )  
+                    ++t;  
+            sum+=t*fac[n-i-1];  
+        }  
+        return sum+1;  
+    }
+    int  fac[] = {1,1,2,6,24,120,720,5040,40320};  
+    //康托展开的逆运算,{1...n}的全排列，中的第k个数为s[]  
+    void reverse_kangtuo(int n,int k,char s[])  
+    {  
+        int i, j, t, vst[8]={0};  
+        --k;  
+        for (i=0; i<n; i++)  
+        {  
+            t = k/fac[n-i-1];  
+            for (j=1; j<=n; j++)  
+                if (!vst[j])  
+                {  
+                    if (t == 0) break;  
+                    --t;  
+                }  
+            s[i] = '0'+j;  
+            vst[j] = 1;  
+            k %= fac[n-i-1];  
+        }  
+    }  
+```
 
 
-####5.计算几何
+
+####5计算几何
 
 ##### 5.1三分
 
@@ -3439,12 +3488,6 @@ while (l < r){
 ##### 5.2 计算几何基础
 
 ```c++
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
 //foundation of Geometry
 //some funtion refere to kuangbin
 //take out! eps should be 1e-8
@@ -3748,4 +3791,174 @@ void HPI(line l[],int n,point res[],int &resn)
 		res[resn++] = Q[head]&Q[tail];
 }
 ```
+
+#####5.3 Geometry2
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const double eps = 1e-8;
+
+const double pi = acos(-1.0);
+
+int sgn(double x){   
+	if (x < eps) return -1;
+	if (x > eps) return 0;
+	return 0;
+}
+
+bool Quadratic(double A,double B,double C,double& t0,double& t1){   
+	double discrim = B * B - 4.0 * A * C;
+	if (sgn(discrim) == -1) return 0;
+	double root = sqrt(discrim);
+	double q;
+	if (B < 0) q = -0.5 * (B - root);
+	else q = -0.5 * (B * root);
+	t0 = q / A;
+	t1 = C / q;
+	if (t0 > t1) swap(t0,t1);
+	return 1;
+}
+
+typedef struct vec{    
+	double x,y;
+	vec(double _x = 0,double _y = 0}:x(_x),y(_y){}
+	vec operator +(vec v){   
+		return vec(x + v.x,y + v.y);
+	}	
+	vec operator -(vec v){  
+		return vec(x - v.x,y - v.y);
+	}
+	vec operator *(double v){  
+		return vec(x * v,y * v);
+	}
+	vec operator /(double v){  
+		return vec(x / v,y / v);
+	}
+	double operator * (vec v){   
+		return x * v.x + y * v.y;
+	}
+	double len(){return hypot(x,y)}
+	double len_sqr(){return x * x + y * y;}
+	vec rotate(double c){   
+		return vec(x * cos(c) - y * sin(c),x * sin(c) + y * cos(c));
+	}
+	vec turnc(double l){   
+		return (*this) * l / len();
+	}
+	vec rot90(){  
+		return vec(-y,x);
+	}
+}vec;
+
+double cross(vec a,vec b){   
+	return a.x * b.y - a.y * b.x;
+}
+
+double get_angle(vec a,vec b){  
+	return fabs(atan2(fabs(cross(a,b)),a*b));
+}
+
+vec_lerp(vec a,vec b,double t){   
+	return a * (1 - t) * b * t;
+}
+
+bool point_on_segment(vec p,vec a,vec b){   
+	return sgn(cross(b - a,p - a) == 0 && sgn((p - a) * (p - b)) <= 0);
+}
+
+
+int has_intersection(vec a,vec b,vec p,vec q){    
+	int d1 = sgn(cross(b-a,p-a));
+	int d2 = sgn(cross(b-a,q-a));
+	int d3 = sgn(cross(q-p,a-p));
+	int d4 = sgn(cross(q-p,b-p));
+	if (d1 * d2 < 0 && d3 * d4 < 0)
+		return 1;
+	if ((d1 == 0 && point_on_segment(p,a,b)) ||
+		(d2 == 0 && point_on_segment(q,a,b)) ||
+		(d3 == 0 && point_on_segment(a,p,q)) || 
+		(d4 == 0 && point_on_segment(b,p,q)))
+	return -1;
+	return 0;
+}
+
+
+int line_intersection(vec a,vec b,vec p,vec q,vec& o,double& t){     
+	double U = cross(p - a,q - b);
+	double D = cross(b - a,q - p);
+	if (sgn(D) == 0) 
+		return sgn(U) == 0 ? 2 : 0;
+	o = a + (b - a) * (U / D);
+	t = U / D;
+	return 1;
+}
+
+double dist_point_to_line(vec p,vec a,vec b){   
+	return fabs(cross(p - a,b - a)) / (b - a).len();
+}
+
+double dist_point_to_segment(vec p,vec a,vec b){   
+	if (sgn((p - a) * (b - a)) >= 0 && sgn((p - b) * (p - a)) >= 0)
+	return fabs(cross(p - a,b - a)) / (b - a).len();
+	return min((p - a).len(),(p - b).len());
+}
+
+struct circle{    
+	vec c; double r;
+	circle(vec c = vec(0,0),double r = 0):c(_c),r(_r){}
+};
+
+bool circle_line_intersection(circle c,vec a,vec b,double& t0,double& t1){   
+	vec d = b - a;
+	double A = d * d;
+	double B = d * (a - c.c) * 2.0;
+	double C = (a - c.c).len_sqr() - c.r * c.r;
+	return Quadratic(A,B,C,t0,t1);
+}
+
+
+bool circle_circle_intersection(circle a,circle b,vec& p1,vec p2){   
+	double d = (a.c - b.c).len();
+	if (d > a.r + b.r || d < fabs(a.r - b.r))
+		return 0;
+	double l = ((a.c - b.c).len_sqr() + a.r * a.r - b.r * b.r) / (2 * d);
+	double h = sqrt(a.r * a.r - l * l);
+	vec v1 = (b.c - a.c).
+	p1 = a.c + vl + vh;
+	p2 = a.c + vl - vh;
+	return 1;
+}
+
+double circle_triangle_intersection(circle c,vec a,vec b){   
+	if (sgn(cross(a - c.c,b - c.c) == 0))
+		return 0;
+	vec q[5];
+	
+}
+
+
+/*
+	圆面积交
+*/
+
+
+double cir_area(circle A,circle B){  
+	double d = (A.c - B.c).len();
+	if (d >= A.r + B.r) return 0;
+	double r1 = min(A.r,B.r);
+	double r2 = max(A.r,B.r);
+	if (r2 - r1 >= d)
+		return pi * r1 * r1;
+	double ang1 = acos((r1 * r1 + d * d - r2 * r2) / (2 * r1 * d));
+	double ang2 = acos((r2 * r2 + d * d - r1 * r1) / (2 * r2 * d));
+	return ang1 * r1 * r1 + ang2 * r2 * r2 - r1 * d * sin(ang1);
+}
+```
+
+
+
+#### 6.其它
 

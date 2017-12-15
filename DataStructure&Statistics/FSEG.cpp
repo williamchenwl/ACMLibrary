@@ -1,4 +1,19 @@
+/*
+	functional style segment tree is a very useful and simple data structure.
+	the basic idea of this data structure is saving all the history information with minimum cost of memory.
+	With this data structure, you can create a segment tree representing the value information of an interval as long as the value information can be obtained with the subtract operation. 
+*/
+
+
+
 const int trsize = N * 20;
+
+/*
+	siz : the value infomation, how many covers there are of the current node.
+	root : representing the root node id of one history version of the segment tree.
+	sl : left-son of the segment-tree node
+	sr : right-son of the segment-tree node
+*/
 
 ll siz[trsize];
 int root[N],sl[trsize],sr[trsize],tot = 0;

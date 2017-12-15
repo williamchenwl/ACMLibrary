@@ -1,39 +1,57 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
+struct GuassX
+{
+    int equ,var;
+    double a[maxNode+20][maxNode+20],x[maxNode+20];
+    void init()
+    {
+        memset(a,0,sizeof(a));
     }
-*/
-//高斯消元Gauss.cpp
-int swap(int x,int y){
-      for (int i=0;i<=n;i++){
-        double tmp=c[x][i];
-        c[x][i]=c[y][i];
-        c[y][i]=tmp;   
+    void build()
+    {
+       equ=var=tot + 1;
+
+       for(int i = 0;i <= tot;i++)
+       {
+           a[i][i]=-1;
        }
- }
-  
-int guass(){
-     for (int i=1;i<=n;i++)
-         for (int k=i,j=i;j<=n;j++)
-         {if (fabs(c[j][i-1])>fabs(c[k][i-1])) k=j;
-         swap(i,k);
-         for (int j=i+1;j<=n;j++)
-         for (int k=n;k>=i-1;k--)
-         c[j][k]-=c[i][k]*c[j][i-1]/c[i][i-1];}
-         
-}
-  
-int solve(){
-    double ans[N];
-    ans[n]=1;
-    for (int i=n;i>=1;i--){
-      double sum=0;
-      for (int j=i;j<=n;j++)  sum-=ans[j]*c[i][j];
-      ans[i-1]=sum/c[i][i-1];
-    }  
-   	for (int i=0;i<n;i++)
-    if (i) printf(" %.3lf",ans[i]);
-    else printf("%.3lf",ans[i]); 
-    printf("\n");
-}
+       a[0][var]=-1;
+
+       for(int i = 0;i <= tot;i++)if(!mark[i])
+       {
+           for(int j = 0;j < 6;j++)
+           {
+               int y=son[i][j];
+               a[y][i]+=1.0/6;
+           }
+       }
+    }
+    int elimination()
+    {
+        int i,j,k,col,max_r;
+        for(k=0,col=0;k<equ&&col<var;k++,col++)
+        {
+            max_r=k;
+            for(i=k+1;i<equ;i++)
+            {
+                if(fabs(a[i][col] )>fabs(a[max_r][col] ) ) max_r=i;
+            }
+            if(fabs(a[max_r][col])< 1e-10)  return 0;
+            if(k!=max_r)
+            {
+                for(j=col;j<=var;j++)  swap(a[k][j],a[max_r][j]  );
+            }
+            for(j=col+1;j<=var;j++)  a[k][j]/=a[k][col];
+
+            a[k][col]=1;
+
+            for(i=0;i<equ;i++) if(i!=k)
+            {
+                for(j=col+1;j<=var;j++) a[i][j]-=a[k][j]*a[i][col];
+
+                a[i][col]=0;
+            }
+        }
+        for(i=0;i<equ;i++)  x[i]=a[i][var];
+        return 1;
+    }
+}gauss;

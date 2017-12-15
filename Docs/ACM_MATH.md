@@ -86,17 +86,27 @@ $S(p,0)  = 0,p >= 1,S(p,p) = 1$
 
 $\frac{1}{(1+x)^n} = C(n-1,n-1) + C(n,n-1)x + C(n+1,n-1)x^2 + ....C(2n,n-1)x^n$
 
+###### 1.9 二项式反演
+
+$a(n) = \sum\limits_{i = 0}^{n}\binom{n}{i}b(i) \to b(n) = \sum\limits_{i = 0}^{n}(-1)^{n - i}\binom{n}{i}a(i)$
 
 
 
+###### 1.10 Polya与Burnside
+
+$G$是目标集$[1,n]$上的置换群，$c(a_k)$是在置换$a_k$的作用下的不动点
+
+则等价类的个数等于$\frac{1}{|G|} * \sum\limits_{i = 1}^gc(a_i)$
+
+典型例子包括圆排列，只有一个置换有不动点,个数为n!，所以圆排列的数量要再除n（共有n个置换）
+
+ 一个置换对应若干个不相交的循环，记下循环的个数为$\lambda(a_i)$
+
+比如旋转这种最常见的操作，转i次对应的循环个数是$gcd(i,n)$
+
+Polya定理: $L = \frac{1}{|G|}\sum\limits_{a_i \in G} m ^{\lambda(a_i)}$，m是染色的颜色数
 
 
-
-
-
-
-
- 
 
 ##### 2.Graph Theory 
 
@@ -124,9 +134,15 @@ $diag(D)$为点度数向量生成的对角矩阵，$G_{xy}$为邻接矩阵，则
 
 ###### 2.3平面图
 
-$F$为平面中的分割区域数，$E$为边数，$V$为点数，$F = E- V +1$
+$F​$为平面中的分割区域数，$E​$为边数，$V​$为点数，$F = E- V +1​$
 
 
+
+###### 2.4 双连通分量
+
+加最少多少条边使得图变成双连通分量、
+
+缩点成树后计算叶子节点树
 
 
 
@@ -170,15 +186,17 @@ $e(n) = \sum\limits_{d|n}\mu(d)$
 
 恒等函数$I$和莫比乌斯函数$\mu$在Dirichlet卷积意义下互为逆元，由此可以得到莫比乌斯反演$g = f *I, g * \mu = f$。
 
+
+
 ######3.4恒等式与技巧
 
 1.$\sum_{i=1}^{n}\sigma_{k}(i) = \sum_{i = 1}^{n}\sum_{d|i}d^k = \sum_{d = 1}^nd^k\lfloor\frac{n}{d}\rfloor$
 
 2.$[s = \emptyset] = \sum_{t \subset s}(-1)^{|t|}$
 
+3.$n = p^k \to \phi(n) = p^k - p^{k-1}$
 
-
-
+4.$s(n) = \sum_{i=1}^{n}i * \lfloor\frac{n}{i}\rfloor = \sum_{i = 1}^{n}\sigma(i)$
 
 
 
@@ -188,7 +206,67 @@ $a^n \equiv a^{n \ mod \ \phi(p) + \phi(p)} (mod p), (n \geq \phi(p))$
 
 
 
+###### 3.7 反素数
 
+对于任何正整数n，其约数个数记为$d(n)$，如果任意$i < n$, $d(i) <  d(n)$，则n被称为反素数，反素数的形式必定为$n = 2^{t_1} * 3^{t_2} * 5^{t_3} *....$,并且,fan$t1 \geq t2 \geq t3 ....$，反素数的求解通常使用dfs。建的dfs树形式为，每层若干个节点表示的某个质因子的若干次方。
+
+
+
+###### 3.8 证明实例
+
+1.计算$\sum_{i = 1}^{m}\sum_{j = 1}^{n}gcd(i,j)$
+
+$f(d) = \sum_{i = 1}^{n}\sum_{j = 1}^{m}[gcd(i,j) == d] $
+
+$F(d) = \sum_{i = 1}^n\sum_{j = 1}^m[d | gcd(i,j)]$
+
+显然$F(d) = \sum\limits_{d|n} f(n)$,自然使用反演$f(d) = \sum\limits_{d | n}F(n) * \mu(\frac{n}{d})$
+
+通过常用的加速技巧，即可在$O(\sqrt{n})$时间内完成计算
+
+
+
+2.求第n个非完全平方数
+
+先套一层二分，转化为求$f(n) = \sum_{i = 1}^{n}\sum\limits_{d}[d * d == n]$
+
+这会是一种莫比乌斯式的容斥,也可以构造类似于1的两个函数，筛法求解
+
+$f(n) = \sum_{d = 1}^{\sqrt{n}}\mu(d)\lfloor\frac{n}{i^2}\rfloor$
+
+
+
+3.$f(n) = rad(n) * \phi(n), g(n) = \sum_{d|n}f(d),h(n) = \sum_{i = 1}^ng(i)$,rad(n)是n的因子中最大的无平方因子的因子
+
+$n = \prod_{i = 1}^tp_i^{k_i} , $ $rad(n) = \prod_{i = 1}^{t}p_i$
+
+$(n,m) = 1,rad(n * m) = rad(n) * rad(m)$ 
+
+$f(n)$为积性函数
+
+$g(n) = \sum_{d|n}f(d) = \prod_{i=1}^{t}\sum_{j = 0}^{k_i}f(p_i^j) = \prod_{i = 1}^t(1 + p_i *\sum_{j = 1}^{k_i}\phi(p_i^{j - 1})) = \prod_{i = 1}^t(p_i^{k_i} + 1)$
+
+这个式子代表的含义是，每个质因子要么都选，要么都不选，得到的所有乘积
+
+$g(n) = \sum_{d | n}[(d,\frac{n}{d}) = 1] * d = \sum_{i = 1}^{n}\sum_{j = 1}^n[(i,j) = 1] * [ij = n] * i$
+
+ $h(n) = \sum_{k=1}^{n}\sum_{i = 1}^{n}\sum_{j = 1}^n[(i,j) = 1] * [ij = k] * i$
+
+$h(n) = \sum_{i = 1}^{n}\sum_{j = 1}^n[(i,j) = 1] * [ij \leq k] * i$
+
+$h(n) = \sum_{i = 1}^{n}\sum_{j = 1}^{n}[ij\leq n]i\sum\limits_d[d | i][d | j] \mu(d)$
+
+$h(n) = \sum_{d = 1}^{\sqrt{n}}d\mu(d)\sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^{n}[d | i][f | j][ij \leq n]\frac{i}{d}$
+
+$h(n) = \sum\limits_{d = 1}^{\sqrt{n}}d\mu(d)\sum\limits_{i = 1}^{\lfloor\frac{n}{d}\rfloor}\sum\limits_{j = 1}^{\lfloor\frac{n}{d}\rfloor}[ijd^2 \leq n]i$
+
+$h(n) = \sum\limits_{d = 1}^{\sqrt{n}}d\mu(d)\sum\limits_{i = 1}^{\lfloor\frac{n}{d^2}\rfloor}{\lfloor\frac{n}{i * d^2}}\rfloor i$
+
+4.杜教筛
+
+求$f(n) = \sum_{i = 1}^n\phi(i)$
+
+$\sum_{i = 1}^{n}\sum_{d | i}\phi(d) = \frac{n(n + 1)}{2} = \sum_{i = 1}^{n}f(\lfloor\frac{n}{i}\rfloor) = \sum_{i = 1}^n\sum_{d = 1}^{\lfloor\frac{n}{i}\rfloor}\phi(d)$
 
 
 
@@ -210,7 +288,7 @@ $\sum_{i = 1}^{n}\frac{1}{i}$在n较大时等于$ln n + r$, r为0.57721566490153
 
 
 
-###### 5.2幂和
+###### 5.2 幂和
 
 $\sum\limits_{i = 1}^{n}i = \frac{n(n+1)}{2}$
 
@@ -221,4 +299,52 @@ $\sum\limits_{i=1}^{n}i^3 = [\frac{n(n+1)}{2}]^2$
 $\sum\limits_{i=1}^n i^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30} $
 
 $\sum\limits_{i=1}^{n}i^5 = \frac{n^2(n+1)^2(2n^2+2n-1)}{12}$
+
+###### 5.3 计算几何
+
+1.叉积和点积均具有关于向量加减的分配率。
+
+2.多边形的面积等于所有点逆时针排序以后，相邻两个点的向量叉积的结果。
+
+###### 5.4 三角形面积
+
+$S = a * h / 2$
+
+$S  = a * b *c / 4r$ : r是外接圆的半径
+
+$S = sqrt(p(p - a) * (p - b) *(p - c))$
+
+###### 5.5 牛顿迭代
+
+$x^{'} = x - \frac{f(x)}{f^{'}(x)}$
+
+可以用来逼近sqrt(n)等
+
+
+
+###### 5.6 DP方程
+
+```
+f[i,j]=max{f[i-1,k]}+1 | (a[i]=b[j]) and (b[k]<b[j])
+
+f[i,j]=f[i-1,j] | (a[i]<>b[j])
+
+f[i,j]表示a串和b串的最上升长公共子串
+
+需要在枚举j的过程中顺便更新最大的K，保证n^2复杂度
+for(int i=1;i<=m;++i)
+{
+    maxf=0;
+    for(int j=1;j<=n;++j)
+        if(b[j]<a[i]) maxf=max(maxf,f[j]);
+        else
+            if(b[j]==a[i]) f[j]=maxf+1,ans=max(ans,f[j]);
+}
+```
+
+
+
+
+
+
 

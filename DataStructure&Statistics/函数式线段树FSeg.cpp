@@ -1,10 +1,13 @@
-/*
-    correctly used times = 
-    used in = { 
-   	
-    }
-*/
+
+
 int siz[N],root[N],sl[trsize],sr[trsize];
+
+/*
+	cover a single place('p') with 'c' times 
+	fx is the pre-version of segment tree and the corresponding node
+	nx is the new-version of segment tree
+	a and b is passed to determine which node(left or right) to go in the next step, they together represent the interval of the c current node.
+*/
 
 void insert(int a,int b,int fx,int &nx,int p,int c){
 	nx = ++tot;

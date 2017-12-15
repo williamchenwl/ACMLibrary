@@ -1,13 +1,20 @@
 /*
-    correctly used times = 
-    used in = { 
-   	
-    }
+    This piece of code is a simple version of the combination of segment tree and fenwick tree(binary indexed tree).
+    Fenwick tree is the first level and segment tree is in the second level.
+    The combination of segment tree and fenwick tree is rathrer powerful, it can handle problems like insert a lot of numbers into one place and find out information about intervals.
+	
 */	
-//树套树
+
+
+//this is the build up function of segment tree
+//allocate the memory to the segment tree dynamicly as there are so many uselesss nodes in each segment tree
+
 int build(int a,int b){ 
 	int x = ++tot;
-	if (a == b) {root[a] = 1; return;}
+	if (a == b){
+		root[a] = 1; 
+		return;
+	}
 	int mid = (a + b) >> 1;
 	sl[x] = build(a,mid);
 	sr[x] = build(mid + 1,b);
